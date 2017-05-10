@@ -2,4 +2,4 @@
 misc/
 
 # Python
-.pyc
+*.pyc
