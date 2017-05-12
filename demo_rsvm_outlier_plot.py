@@ -19,7 +19,7 @@ gnd = np.concatenate([posi_gnd, nega_gnd], axis = 0)
 config['kernel'] = 'linear'
 config['rsvm_v0'] = np.ones(shape = (posi_num + nega_num,))
 config['rsvm_eta'] = 1.0
-config['rsvm_iter_num'] = 7
+config['rsvm_iter_num'] = 3
 
 # without outliers
 rsvm_obj1 = rsvm(config)
@@ -32,10 +32,12 @@ gnd[posi_num + 6] = 1
 rsvm_obj2 = rsvm(config)
 rsvm_obj2.fit(fea, gnd)
 print '# with outliers, sv ratio vector: ', rsvm_obj2.sv_ratio_vec
-
+print '# sample weights:'
+print rsvm_obj2.smp_weights_mat[[1, 5, posi_num + 6]]
 # plot figures
-plt.figure(1)
+plt.figure(num = 0, figsize = (16, 6))
+plt.subplot(1, 2, 1)
 common.plot_decision_function(rsvm_obj1, fea, gnd, title = 'without outliers')
-plt.figure(2)
+plt.subplot(1, 2, 2)
 common.plot_decision_function(rsvm_obj2, fea, gnd, title = 'with outliers')
 plt.show()
