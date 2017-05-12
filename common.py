@@ -1,6 +1,5 @@
 import numpy as np 
 import matplotlib.pyplot as plt 
-from matplotlib.markers import MarkerStyle
 
 def plot_decision_function(classifier, fea, gnd, title):
     '''
@@ -17,8 +16,8 @@ def plot_decision_function(classifier, fea, gnd, title):
         np.linspace(fea_min[1], fea_max[1], mesh_num))
 
     Z = classifier.decision_function(np.c_[xx.ravel(), yy.ravel()], last_model_flag = False)
-    Z_first = Z[:, 0]
-    Z_last = Z[:, -1]
+    Z_first = Z[:, 0].copy()
+    Z_last = Z[:, -1].copy()
     Z_first = Z_first.reshape(xx.shape)
     Z_last = Z_last.reshape(xx.shape)
     del Z

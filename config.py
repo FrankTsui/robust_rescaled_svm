@@ -20,5 +20,5 @@ config = {
 	# options for robust svm
 	'rsvm_v0': None,
 	'rsvm_eta': 0.5,
-	'rsvm_iter_num': 5
+	'rsvm_iter_num': 3
 }
