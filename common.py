@@ -1,6 +1,5 @@
 import numpy as np 
 import matplotlib.pyplot as plt 
-from matplotlib.markers import MarkerStyle
 
 def plot_decision_function(classifier, fea, gnd, title):
     '''

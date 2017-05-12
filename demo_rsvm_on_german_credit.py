@@ -1,7 +1,7 @@
 from sklearn.datasets import load_svmlight_file
 import numpy as np 
 import matplotlib.pyplot as plt 
-from rescaled_robust_svm import rsvm 
+from robust_rescaled_svm import rsvm 
 from config import config
 import common
 
