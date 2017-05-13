@@ -1,3 +1,7 @@
+'''
+to show the different performance of svm and robust rescaled svm on a dataset with outliers
+'''
+
 import numpy as np 
 import matplotlib.pyplot as plt 
 from robust_rescaled_svm import rsvm 
@@ -25,6 +29,7 @@ config['rsvm_iter_num'] = 3
 rsvm_obj1 = rsvm(config)
 rsvm_obj1.fit(fea, gnd)
 print '# without outliers, sv ratio vector: ', rsvm_obj1.sv_ratio_vec
+
 # with outliers
 gnd[1] = -1
 gnd[5] = -1
@@ -32,7 +37,7 @@ gnd[posi_num + 6] = 1
 rsvm_obj2 = rsvm(config)
 rsvm_obj2.fit(fea, gnd)
 print '# with outliers, sv ratio vector: ', rsvm_obj2.sv_ratio_vec
-print '# sample weights:'
+print '# outlier sample weights:'
 print rsvm_obj2.smp_weights_mat[[1, 5, posi_num + 6]]
 # plot figures
 plt.figure(num = 0, figsize = (16, 6))
