@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 def plot_decision_function(classifier, fea, gnd, title):
     '''
         plot the decision function in 2-d plane
-        classifiers: the trained svm objects
+        classifiers: the svm models
         fea: array like, shape = (smp_num, fea_num)
         gnd: array like, shape = (smp_num,)
         title: title of plot
@@ -12,6 +12,7 @@ def plot_decision_function(classifier, fea, gnd, title):
     fea_min = fea.min(axis = 0)
     fea_max = fea.max(axis = 0)
     mesh_num = 100
+    # meshgrid
     xx, yy = np.meshgrid(np.linspace(fea_min[0], fea_max[0], mesh_num), \
         np.linspace(fea_min[1], fea_max[1], mesh_num))
 
@@ -22,7 +23,7 @@ def plot_decision_function(classifier, fea, gnd, title):
     Z_last = Z_last.reshape(xx.shape)
     del Z
 
-    # plot the line, the points, and the nearest vectors to the plane
+    # plot the line, the points
     leg_svm = plt.contour(xx, yy, Z_first, levels = [0.0], colors = 'k')
     leg_rsvm = plt.contour(xx, yy, Z_last, levels = [0.0], colors = 'r')
     posi_index = gnd == 1

@@ -1,3 +1,8 @@
+'''
+this algorithm is presented in:
+Guibiao Xu, Zheng Cao, Bao-Gang Hu and Jose Principe, Robust support vector machines based on the 
+	rescaled hinge loss, Pattern Recognition, 2017.
+'''
 import numpy as np 
 from sklearn.svm import SVC
 from collections import OrderedDict
@@ -51,12 +56,15 @@ class rsvm:
 			train_fea: array like, shape = (smp_num, fea_num)
 			train_gnd: array like, shape = (smp_num,), -1 and +1
 		'''
-		# check elements in train_gnd
+		# check elements in train_gnd, the element should be -1 or +1
 		assert set(train_gnd) == set([-1, 1])
 
 		train_num = train_fea.shape[0]
+		# save sample weights across iterations
 		self.smp_weights_mat = np.zeros(shape = (self.config['rsvm_iter_num'], train_num))
+		# save svm models across iterations
 		self.svmmodel_dict = OrderedDict()
+		# save support vector ratios across iterations
 		self.sv_ratio_vec = np.zeros(shape = (self.config['rsvm_iter_num'],))
 
 		self.smp_weights_mat[0] = self.config['rsvm_v0']
@@ -70,13 +78,15 @@ class rsvm:
 			else:
 				tmp_outputs = self.svmmodel_dict[iter_i].decision_function(train_fea)
 				tmp_hinge_loss = np.maximum(0.0, 1.0 - tmp_outputs * train_gnd)
+				# weights update function
 				self.smp_weights_mat[iter_i + 1] = np.exp(-self.config['rsvm_eta'] * tmp_hinge_loss)
 		self.smp_weights_mat = self.smp_weights_mat.transpose()
 
 	def predict(self, test_fea, last_model_flag = True):
 		'''
-			perform prediction
+			prediction function
 			test_fea: array like, shape = (smp_num, fea_num)
+			last_model_flag: whether only use the last svm model or not
 
 			return
 			pred: array like, shape = (smp_num, iter_num)
@@ -95,6 +105,7 @@ class rsvm:
 			return accuracy on the given test_fea and test_gnd
 			test_fea: array like, shape = (smp_num, fea_num)
 			test_gnd: array like, shape = (smp_num,), -1 and +1
+			last_model_flag: whether only use the last svm model or not
 
 			return
 			accu_vec: a vector
@@ -109,8 +120,9 @@ class rsvm:
 
 	def decision_function(self, test_fea, last_model_flag = True):
 		'''
-			distances of samples to the separating hyperplane
+			svm outputs
 			test_fea: array like, shape = (smp_num, fea_num)
+			last_model_flag: whether only use the last svm model or not
 
 			return
 			distance: array like, shape = (smp_num, iter_num)
