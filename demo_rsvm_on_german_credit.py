@@ -1,3 +1,7 @@
+'''
+to show the performance of robust rescaled svm on the German credit dataset
+'''
+
 from sklearn.datasets import load_svmlight_file
 import numpy as np 
 import matplotlib.pyplot as plt 
@@ -6,6 +10,7 @@ from config import config
 import common
 
 # load German credit dataset
+# the dataset can be downloaded from (german.number): https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/
 fea, gnd = load_svmlight_file('misc/german.numer_scale')
 np.random.seed(400)
 smp_num = fea.shape[0]
@@ -46,7 +51,7 @@ for i in range(config['rsvm_iter_num']):
 
 test_accu_vec2 = rsvm_obj.score(test_fea, test_gnd, last_model_flag = False)
 
-# print
+# print the results
 repeat_num = 70
 print '-' * repeat_num
 print '# sv ratio: {}'.format(rsvm_obj.sv_ratio_vec)

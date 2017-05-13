@@ -1,8 +1,8 @@
 '''
-option settings for robust svm
+parameter settings for robust rescaled svm
 '''
 config = {
-	# options for svm.SVC
+	# parameters for svm.SVC
 	'C': 1.0,
 	'kernel': 'rbf',
 	'degree': 3.0,
@@ -17,8 +17,8 @@ config = {
 	'max_iter': -1,
 	'decision_function_shape': None,
 	'random_state': None,
-	# options for robust svm
-	'rsvm_v0': None,
-	'rsvm_eta': 0.5,
-	'rsvm_iter_num': 3
+	# parameters for robust rescaled svm
+	'rsvm_v0': None, # initial sample weights
+	'rsvm_eta': 0.5, # the scaling parameter
+	'rsvm_iter_num': 3 # iteration number of half-quadratic optimization algorithm
 }
