@@ -17,6 +17,5 @@ Parameter settings:
 Prerequisites:
 1. numpy
 2. sklearn
-3. collections.OrderedDict
 
 [link_paper]: http://www.sciencedirect.com/science/article/pii/S0031320316303065
