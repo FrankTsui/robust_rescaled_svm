@@ -17,3 +17,4 @@ Parameter settings:
 Prerequisites:
 1. numpy
 2. sklearn
+3. collections.OrderedDict
