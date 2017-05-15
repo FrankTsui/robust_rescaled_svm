@@ -5,7 +5,7 @@ The codes are for the algorithm presented in:
  Guibiao Xu, Zheng Cao, Bao-Gang Hu and Jose Principe, [Robust support vector machines based on the rescaled hinge loss function][link_paper], Pattern Recognition, Vol. 63, pp. 139-148, March 2017.
 
 Usuage:
-1. demo_rsvm_outlier_plot.py
+1. ![demo_rsvm_outlier_plot.py](https://pan.baidu.com/s/1dENpUqH)
 2. demo_rsvm_on_german_credit.py
 
 Parameter settings:
